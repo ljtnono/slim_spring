@@ -1,4 +1,6 @@
-package cn.ljtnono.slimspring;public class Main {
+package cn.ljtnono.slimspring;
+
+public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }

@@ -48,3 +48,32 @@ public class SimpleBeanContainerTest {
 * BeanDefinitionRegistry，BeaDefinition注册表接口，定义注册BeanDefinition的方法。
 * SingletonBeanRegistry及其实现类DefaultSingletonBeanRegistry，定义添加和获取单例bean的方法。
 
+bean容器作为BeanDefinitionRegistry和SingletonBeanRegistry的实现类，具备两者的能力。向bean容器中注册BeanDefinition后，使用bean时才会实例化。
+
+![](./assets/bean-definition-and-bean-definition-registry.png)
+
+测试：
+
+```java
+
+public class BeanDefinitionAndBeanDefinitionRegistryTest {
+
+	@Test
+	public void testBeanFactory() throws Exception {
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+		BeanDefinition beanDefinition = new BeanDefinition(HelloService.class);
+		beanFactory.registerBeanDefinition("helloService", beanDefinition);
+
+		HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+		helloService.sayHello();
+	}
+}
+
+class HelloService {
+	public String sayHello() {
+		System.out.println("hello");
+		return "hello";
+	}
+}
+
+```
